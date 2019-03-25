@@ -1,0 +1,77 @@
+<style type="text/css">
+
+  .dropdown-menu{
+    left: -185px;
+  }
+
+  .dropdown-item{
+      border: 1px solid #ddd; 
+      height: 40px;
+      padding: 5px;
+      color: #fff;
+      background: rgba(1,1,1,0.7);
+  }
+  
+  .btn{
+  border: 1px solid white; 
+  color: white;
+  }
+
+  .btn:hover{
+  background-color: #ddd;
+  color: black;
+  }
+
+  .dropdown-item:hover, .dropdown-item:active, .dropdown-item:visited, .dropdown-item:focus{
+  background-color: black;
+  color: white;
+  }
+
+</style>
+
+
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color:transparent; background:transparent; 
+                                                          width: 100%; height: 50px; position:absolute; z-index: 100;">
+  <div class='container-fluid' style="background:transparent;">  
+    <div class="navbar-header">
+        <!-- <a class="navbar-brand" href="https://pankajsuthar.herokuapp.com/user/sign_in">
+             image_tag("logo.png", :alt => "Logo", :class => "center-block img-responsive", 
+                  :style => "height: 35px; width: 35px;") %>
+        </a> -->
+    </div>
+
+    <div class="nav navbar-right" style="display:table;">         
+      <div class="dropdown table-li"">
+        <a href="#" style="color:#111; font-weight: bold;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >
+          Login <b class="caret"></b>
+        </a>
+
+        <div class="dropdown-menu" style="position: absolute; right: 0px; 
+                                          padding: 10px 10px;
+                                          align-items: center;
+                                          justify-content: center;
+                                          background: rgba(1,1,1,0.7);"> 
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= f.email_field :email, hide_label: true, placeholder: "Email", class: "dropdown-item" %>
+          <%= f.password_field :password, hide_label: true, placeholder: "Password", class: "dropdown-item" %>
+          <%= f.check_box :remember_me, label: "" %>
+          <a> </a>
+          <%= f.label :remember_me, class: 'login-dropdown', style: "font-weight: Extra-Light; font-size: 14px; color: white;" %><br>
+          <div class="dropdown-divider"></div>
+            <div class="text-center">
+            <%= f.submit "Log In", class: "btn btn-outline-secondary" %>
+            </div>
+          <% end %>
+
+            <div class="text-center" style="margin-top: 5px;">
+            <%= link_to "Forgot Password?", new_password_path(resource_name), class: "dropdown-item-button", style: "color: white; font-size: 12px;padding-top: 2px;"%><br />
+            </div>
+
+        </div>
+
+        </div>
+      </div>
+  
+  </div>
+</nav>
+

@@ -1,0 +1,351 @@
+rails g model User first_name:string last_name:string email:string gender:string date_of_birth:string contact:string
+rails db:migrate
+
+paperclip
+rails generate paperclip user avatar
+
+users controller -> Manually
+
+rails g model Category title:string
+rails db:migrate
+
+rails g controller categories
+
+rails g model user_category user:references category:references
+rails db:migrate
+
+rails g model Game name:string location:string expiry:datetime description:text credits_required:float published:boolean submission:integer
+rails db:migrate
+
+rails generate paperclip game avatar
+rails db:migrate
+
+rails generate controller games
+
+rails g model game_category category:references game:references 
+rails db:migrate
+
+rails g model Question question:string
+rails db:migrate
+
+rails g controller questions
+
+rails g model Answer answer:string is_correct:boolean question:references
+rails db:migrate
+
+rails g migration AddGameToQuestions game:references
+rails db:migrate
+
+rails g migration AddColumnToUsers access_token:string
+railsdb:migrate
+
+rails g model Account amount:float transcation:datetime user:references
+rails db:migrate
+
+rails g migration add_a_column_to_users cridets:float
+rails db:migrate
+
+gem 'stripe'
+rails g controller charges
+
+rails g migration add_a_column_to_accounts response_id:string
+rails db:migrate
+
+rails g controller accounts
+
+
+rails g model Submission user_id:integer game_id:integer question_id:integer answer_id:integer
+rails db:migrate
+
+rails g model Location name:string
+rails db:migrate
+
+rails g model game_location game:references location:references
+rails db:migrate
+
+rails g controller locations
+
+rails g migration AddColumnToSubmissions submissionid:string
+rails db:migrate
+
+rails g migration add_the_column_to_users bank_address:string bank_name:string bank_ifsc:string routing_number:integer
+rails db:migrate
+
+{
+	"contact": "1234567890",
+	"game_id": 2,
+	"submitted_choices": [{"question":"2",
+                                         "answer":"1"}, 
+                                    {"question":"3",
+                                         "answer":"4"}]
+}
+
+category.each do |x|
+x.games.where(submission: 1).each do |game|
+p game.name
+end
+
+
+game = Game.where(game_id: 1)
+game = Game.find(1)
+game.first.question_ids.each do |ans|
+Question.find(ans).answers.where(is_correct: true).first.id
+end
+
+j = Submission.where(game_id: f).first.submissionid
+
+Submission.where(submissionid: j).each do |f|
+ puts f.question_id
+ puts f.answer_id
+end
+
+temp = []
+Submission.where(submissionid: j).each do |f|
+temp.push(f.question_id, f.answer_id)
+end
+
+answer = []
+game = Game.find(1)
+game.question_ids.each do |ans|
+answer.push(Question.find(ans).answers.where(is_correct: true).first.id)
+end
+
+#temp = []
+#j = Submission.where(game_id: 1).first.submissionid
+#Submission.where(submissionid: j).each do |f|
+#temp.push(f.answer_id)
+#end
+
+answer = []
+game = Game.find(1)
+game.question_ids.each do |ans|
+answer.push(Question.find(ans).answers.where(is_correct: true).first.id)
+end
+
+winner = []
+
+temp = []
+Submission.where(game_id: 1).each do |abs|
+  ok = abs.submissionid
+  aaa = []
+  Submission.where(submissionid: ok).each do |f|
+  # qid = f.question_id                                        
+  #Submission.where(question_id: qid)
+    aaa.push(f.answer_id)
+  end 
+  #end
+  if answer == aaa
+  winner.push(abs.user_id, abs.game_id)
+  end 
+  aaa = []
+end
+
+{
+    "status": "SUCCESS",
+    "message": "user-categories",
+    "data": {
+        "id": 1,
+        "user_id": 1,
+        "game_id": 2,
+        "question_id": 1,
+        "answer_id": 2,
+        "created_at": "2019-03-14T05:58:47.212Z",
+        "updated_at": "2019-03-14T05:58:47.212Z"
+    }
+}
+
+{
+    "status": "SUCCESS",
+    "message": "Payment success",
+    "data": {
+        "id": "re_1EDPB6CEN0fVsWTQAHeKrwjt",
+        "object": "refund",
+        "amount": 200,
+        "balance_transaction": "txn_1EDPB6CEN0fVsWTQnyqtCJYa",
+        "charge": "ch_1EDOVKCEN0fVsWTQ5n349mbu",
+        "created": 1552453136,
+        "currency": "usd",
+        "metadata": {},
+        "reason": null,
+        "receipt_number": null,
+        "source_transfer_reversal": null,
+        "status": "succeeded",
+        "transfer_reversal": null
+    }
+}
+
+
+request = HTTParty.post('http://fcm.googleapis.com/fcm/send', 
+                                :body => 
+                                {
+                                "to"  => "#{@user.first.fcm_token}",
+                                "notification"  => {
+                                "body"  => "#{@user.first_name}: Just join a boom",
+                                "title"  => "Message from Pickperfect",
+                                "content_available" => true,
+                                "priority" => "high",
+                                },
+                                "data" => {
+                                "body" => "#{@user.first_name}: Just join a Pickperfect",
+                                "title" => " Message from  Pickperfect",
+                                "content_available" => true,
+                                "priority" => "high",
+                                } 
+                                }.to_json, 
+                                :headers => 
+                                { 
+                                    'Content-Type' => 'application/json', 
+                                    'Authorization' => "key=#{server_token}" 
+                                } 
+                                )
+
+
+
+
+
+
+
+
+
+ def charges 
+
+    @amount = params[:amount]*100
+
+    
+    require 'stripe'
+      Stripe.api_key = "sk_test_2zAoySXFkpjLn2wxGw8ujRyu"
+
+      response = Stripe::Charge.create(
+        :amount => @amount,
+        :currency =>  "usd",
+        :source => params[:tokenId],  # obtained with Stripe.js
+      )
+
+    # #logger.info "#{response.id}"
+      @res = response.id
+      if response.status == "succeeded"
+        user = User.where(contact: params[:contact]).first
+        if user.accounts.present?
+          sum = user.accounts.first.amount + @amount
+          user.accounts.update(:amount => sum, :response_id => @res)
+        else
+          user.accounts.create(:amount => @amount, :response_id => @res)
+        end
+      end
+     #    [{:response_id => response[:id], :amount => response[:amount]}]
+      render json: {status: 'SUCCESS', message: 'Payment success', data: response }, status: :ok
+    end
+  
+
+
+
+
+
+
+
+user = User.where(contact: params[:contact]).first
+a = Account.find(user.id)
+v = a.amount
+#a = Account.where(user_id: 1).first
+#v = a.amount
+g = Game.find(id)  Game.find(params[:game_id])
+u = g.credits_required
+#a = Account.where(user_id: 1).first
+w = u-v
+user.accounts.update(accounts: w)
+
+
+
+customer = User.where(contact: params[:contact]).first
+customer: customer.id
+
+if amount <= user.amount
+
+user = User.where(contact: "1234567890").first
+category = user.categories
+category.each do |x|
+x.games.each do |y|
+y.questions.each do |z|
+puts z.question
+z.answers.each do |answer|
+puts answer.answer
+end
+end
+end
+end
+
+
+ Parameters: {"_json"=>[{"question"=>"Atala Masjid which was built by Sultan Ibrahim is located at?", 
+                            "answer"=>" Jaunpur"}, 
+                        {"question"=>"Sakhi, Shabad and Ramaini were the notable work of?", 
+                            "answer"=>" Tansen"}, 
+                        {"question"=>"The caves and rock-cut temples at Ellora are?", 
+                            "answer"=>" Hindu and Muslim"}],
+                        "user"=>{}}
+
+
+
+ Parameters: {"contact"=>"1234567890", 
+              "submitted_choices"=>[{"question"=>"Atala Masjid which was built by Sultan Ibrahim is located at?",
+                                         "answer"=>" Jaunpur"}, 
+                                    {"question"=>"Sakhi, Shabad and Ramaini were the notable work of?",
+                                         "answer"=>"Rahim"},
+                                     {"question"=>"The caves and rock-cut temples at Ellora are?", 
+                                         "answer"=>" Hindu and Muslim"}], 
+                                         "user"=>{"contact"=>"1234567890"}}
+
+
+array = [{"question"=>"The captian of India cricket team?",
+                                         "answer"=>"Dhoni"}, 
+                                    {"question"=>"Which player plays football?",
+                                         "answer"=>"Sachin"}]
+
+User.where(contact: params[:contact]).first
+params[:submitted_choices].each do | question, answer|
+
+
+Parameters: {"utf8"=>"✓", "question"=>{"question"=>"The national game of India?", "game_id"=>"3"}, "choice1"=>"Cricket", "choice2"=>"Hockey", "choice3"=>"Football", "choice4"=>"Baseball", "correct_choice"=>"2", "commit"=>"Submit"}
+
+
+
+
+  #[POST] 'game/question
+  def game_question
+    #@user = User.where(contact: params[:contact]).first
+    #category = @user.categories
+      #byebug
+      q = Game.where(id: params[:game_id]).first
+      @response = []
+        #category.each do |category|
+          #category.games.each do |game|
+            q.questions.each do |question|
+              @answers = []
+              @response.push(question: question.question, answer:@answers)
+                question.answers.each do |answer|
+                  @answers.push(answer.answer)
+                end
+            end
+          #end
+        #end
+      render json: {status: 'SUCCESS', message: 'game-question', data:@response}, status: :ok
+    end
+
+
+
+# [POST] category/game
+def category_game
+  #@user = User.where(contact: params[:contact]).first
+  category = Category.where(title: params[:title]).first
+  #category = @user.categories
+  temp = []
+  x = category.games
+  #category.each do |x|
+    x.each do |game|
+        temp.push(id: game.id, name: game.name, description: game.description, location: game.location, avatar: game.avatar_url )
+    #end
+  end
+    render json: {status: 'SUCCESS', message: 'user-games', data: temp}, status: :ok
+  end
+
+
+  
