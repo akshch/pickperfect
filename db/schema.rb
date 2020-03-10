@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2019_03_20_040804) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "accounts", force: :cascade do |t|
     t.float "amount"
     t.datetime "transcation"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "response_id"
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_03_20_040804) do
   create_table "answers", force: :cascade do |t|
     t.string "answer"
     t.boolean "is_correct"
-    t.integer "question_id"
+    t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
@@ -50,8 +53,8 @@ ActiveRecord::Schema.define(version: 2019_03_20_040804) do
   end
 
   create_table "game_categories", force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "game_id"
+    t.bigint "category_id"
+    t.bigint "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_game_categories_on_category_id"
@@ -59,8 +62,8 @@ ActiveRecord::Schema.define(version: 2019_03_20_040804) do
   end
 
   create_table "game_locations", force: :cascade do |t|
-    t.integer "game_id"
-    t.integer "location_id"
+    t.bigint "game_id"
+    t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_game_locations_on_game_id"
@@ -93,7 +96,7 @@ ActiveRecord::Schema.define(version: 2019_03_20_040804) do
     t.string "question"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "game_id"
+    t.bigint "game_id"
     t.index ["game_id"], name: "index_questions_on_game_id"
   end
 
@@ -108,8 +111,8 @@ ActiveRecord::Schema.define(version: 2019_03_20_040804) do
   end
 
   create_table "user_categories", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "category_id"
+    t.bigint "user_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_user_categories_on_category_id"
@@ -137,4 +140,13 @@ ActiveRecord::Schema.define(version: 2019_03_20_040804) do
     t.integer "routing_number"
   end
 
+  add_foreign_key "accounts", "users"
+  add_foreign_key "answers", "questions"
+  add_foreign_key "game_categories", "categories"
+  add_foreign_key "game_categories", "games"
+  add_foreign_key "game_locations", "games"
+  add_foreign_key "game_locations", "locations"
+  add_foreign_key "questions", "games"
+  add_foreign_key "user_categories", "categories"
+  add_foreign_key "user_categories", "users"
 end
