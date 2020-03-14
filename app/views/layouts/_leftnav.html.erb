@@ -328,55 +328,46 @@
 <div class="dash-navbar-left nb-visible">
   <p class="nb-nav-title">Data</p>
   <ul class="nb-nav">
-
-
- <% if (controller_name == "games") %>
-        <li class="active">
-          <a class="" data-toggle="collapse" href="#categoriesNames" aria-expanded="true" aria-controls="collapseStatistics">
+    <% if (controller_name == "games") %>
+      <li class="active">
+        <a class="" data-toggle="collapse" href="#categoriesNames" aria-expanded="true" aria-controls="collapseStatistics">
         <% else %>
-        <li>
-          <a class="collapsed" data-toggle="collapse" href="#categoriesNames" aria-expanded="false" aria-controls="collapseStatistics">
-        <% end %>  
+          <li>
+            <a class="collapsed" data-toggle="collapse" href="#categoriesNames" aria-expanded="false" aria-controls="collapseStatistics">
+            <% end %>
             <span class="nb-link-text">Games</span>
             <span class="fa fa-angle-up nb-btn-sub-collapse"></span>
-          </a> 
+          </a>
           <!-- Dropdown level one -->
           <% if (controller_name == "games") %>
             <ul class="nb-sub-one collapse show" id="categoriesNames">
-          <% else %>
-            <ul class="nb-sub-one collapse" id="categoriesNames">
-          <% end %>  
-
-
-            <li>
-              <a href="<%= games_path %>">
-                <span class="fa fa-clock-o nb-link-icon"></span>
-                <span class="nb-link-text">All Games</span>
-              </a>
-            </li>
-
-            <li>
-              <a href=<%= live_path%>>
-                <span class="fa fa-history nb-link-icon"></span>
-                <span class="nb-link-text">Live games</span>
-              </a>
-            </li>
-          </ul>
-
-
-  <% if (controller_name == "categories") %>
-    <li class="active">
-    <%else%>
-    <li>
-    <%end%>
-      <a href=<%=categories_path%> aria-expanded="true" aria-controls="collapseStatistics">
-        <span class="nb-link-text">Categories</span>
-        <span class=" nb-btn-sub-collapse"></span>
-      </a>
-    </li>
-
-
-  <!--<% if (controller_name == "games") %>
+            <% else %>
+              <ul class="nb-sub-one collapse" id="categoriesNames">
+              <% end %>
+              <li>
+                <a href="<%= games_path %>">
+                  <span class="fa fa-clock-o nb-link-icon"></span>
+                  <span class="nb-link-text">All Games</span>
+                </a>
+              </li>
+              <li>
+                <a href=<%= live_path%>>
+                  <span class="fa fa-history nb-link-icon"></span>
+                  <span class="nb-link-text">Live games</span>
+                </a>
+              </li>
+            </ul>
+            <% if (controller_name == "categories") %>
+              <li class="active">
+              <%else%>
+                <li>
+                <%end%>
+                <a href=<%=categories_path%> aria-expanded="true" aria-controls="collapseStatistics">
+                  <span class="nb-link-text">Categories</span>
+                  <span class=" nb-btn-sub-collapse"></span>
+                </a>
+              </li>
+              <!--<% if (controller_name == "games") %>
     <li class="active">
     <%else%>
     <li>
@@ -396,43 +387,39 @@
         <span class=" nb-btn-sub-collapse"></span>
       </a>
     </li>-->
-    
-    <p class="nb-nav-title">Data</p>
-      <% if (controller_name == "users") %>
-    <li class="active">
-    <%else%>
-    <li>
-    <%end%>
-      <a class="collapsed" href=<%= users_path %> aria-expanded="false" aria-controls="collapseStatistics">
-        <span class="nb-link-text"> Users</span>
-        <span class=" nb-btn-sub-collapse"></span>
-      </a>
-    </li>
-
-      <% if (controller_name == "questions") %>
-    <li class="active">
-      <%else%>
-    <li>
-      <%end%>
-      <a class="collapsed" href=<%= questions_path %> aria-expanded="false" aria-controls="collapseStatistics">
-        <span class="nb-link-text"> Questions </span>
-        <span class="nb-btn-sub-collapse"></span>
-      </a>
-    </li>
-
-
-      <% if (controller_name == "locations") %>
-    <li class="active">
-      <%else%>
-    <li>
-      <%end%>
-      <a class="collapsed" href=<%= locations_path %> aria-expanded="false" aria-controls="collapseStatistics">
-        <span class="nb-link-text"> Options </span>
-        <span class="nb-btn-sub-collapse"></span>
-      </a>
-    </li>
-  </ul>
-  <!--       <p class="nb-nav-title">Reports</p>
+              <p class="nb-nav-title">Data</p>
+              <% if (controller_name == "users") %>
+                <li class="active">
+                <%else%>
+                  <li>
+                  <%end%>
+                  <a class="collapsed" href=<%= users_path %> aria-expanded="false" aria-controls="collapseStatistics">
+                    <span class="nb-link-text"> Users</span>
+                    <span class=" nb-btn-sub-collapse"></span>
+                  </a>
+                </li>
+                <% if (controller_name == "questions") %>
+                  <li class="active">
+                  <%else%>
+                    <li>
+                    <%end%>
+                    <a class="collapsed" href=<%= questions_path %> aria-expanded="false" aria-controls="collapseStatistics">
+                      <span class="nb-link-text"> Questions </span>
+                      <span class="nb-btn-sub-collapse"></span>
+                    </a>
+                  </li>
+                  <% if (controller_name == "locations") %>
+                    <li class="active">
+                    <%else%>
+                      <li>
+                      <%end%>
+                      <a class="collapsed" href=<%= locations_path %> aria-expanded="false" aria-controls="collapseStatistics">
+                        <span class="nb-link-text"> Locations </span>
+                        <span class="nb-btn-sub-collapse"></span>
+                      </a>
+                    </li>
+                  </ul>
+                  <!--       <p class="nb-nav-title">Reports</p>
       <ul class="nb-nav">
         <li>
           <a href="#">
@@ -441,24 +428,22 @@
           </a>
         </li>
       </ul> -->
-
- <p class="nb-nav-title">Account</p>
-  <ul class="nb-nav">
-       <% if (controller_name == "accounts") %>
-      <li class="active">
-        <% else %>
-      <li>
-        <% end %>
-      <a href=<%= accounts_path%>>
-        <span class=""></span>
-        <span class="nb-link-text">Transaction</span>
-      </a>
-    </li>
-  </ul>
-
-  <p class="nb-nav-title">Profile</p>
-  <ul class="nb-nav">
-       <!--<% if (controller_name == "accounts") %>
+                  <p class="nb-nav-title">Account</p>
+                  <ul class="nb-nav">
+                    <% if (controller_name == "accounts") %>
+                      <li class="active">
+                      <% else %>
+                        <li>
+                        <% end %>
+                        <a href=<%= accounts_path%>>
+                          <span class=""></span>
+                          <span class="nb-link-text">Transaction</span>
+                        </a>
+                      </li>
+                    </ul>
+                    <p class="nb-nav-title">Profile</p>
+                    <ul class="nb-nav">
+                      <!--<% if (controller_name == "accounts") %>
       <li class="active">
         <% else %>
       <li>
@@ -468,151 +453,151 @@
         <span class="nb-link-text">Transaction</span>
       </a>
     </li>-->
-    <li>
-      <a href=<%=edit_admin_registration_path%>>
-        <span class="fa fa-image nb-link-icon"></span>
-        <span class="nb-link-text">Profile Settings</span>
-      </a>
-    </li>
-    <li>
-      <a href=<%=destroy_admin_session_path%>>
-        <span class="fa fa-image nb-link-icon"></span>
-        <span class="nb-link-text">Logout</span>
-      </a>
-    </li>
-  </ul>
-</div>
-<!-- /.dash-navbar-left -->
-<div class="content-wrap nb-visible" data-effect="nb-push" style="padding: 0px;">
-  <div class="row" style="padding-top:15px; padding-bottom: 15px; margin: 0px;">
-    <div class="container" id="wrapperContainer" style="min-height: calc(100vh);">
-      <%= yield %>
-    </div>
-    <!-- End of your content -->
-  </div>
-  <!-- End of row div -->
-</div>
-<!-- /.content-wrap -->
-<script type="text/javascript">
-  (function(){
-  "use strict";
-  
-  // Navbar left
-  // -------------------------------------------------
-  
-    // Variables
-      var nb                = $(".dash-navbar-left"),
-          nbBtnToggle       = $(".nb-btn-toggle"),
-          nbBtnCollapse     = $(".nb-btn-collapse"),
-          contentWrap        = $(".content-wrap"),
-          contentWrapEffect  = contentWrap.data("effect"),
-          windowHeight       = $(window).height() - 61,
-          windowWidth        = $(window).width() < 767;
-  
-    // Functions
-      function cwShowOverflow() {
-        if ( windowWidth ) {
-            contentWrap.css({
-            height : windowHeight ,
-            overflow : 'hidden'
-          });
-          $( 'html, body' ).css( 'overflow', 'hidden' );
-        }
-      }
-  
-  
-      function cwHideOverflow() {
-        if ( windowWidth ) {
-          contentWrap.css({
-            height : 'auto' ,
-            overflow : 'auto'
-          });
-          $( 'html, body' ).css( 'overflow', 'auto' );
-        }
-      }
-  
-      function nbShow() {
-        nb.addClass("nb-show").removeClass("nb-hide");
-        contentWrap.addClass(contentWrapEffect);
-        cwShowOverflow();
-        nbBtnToggle.find("span").removeClass("fa-bars").addClass("fa-arrow-left");
-      }
-  
-      function nbHide() {
-        nb.removeClass("nb-show").addClass("nb-hide");
-        contentWrap.removeClass(contentWrapEffect);
-        cwHideOverflow();
-        nbBtnToggle.find("span").removeClass("fa-arrow-left").addClass("fa-bars");
-      }
-  
-    // Toggle the edge navbar left
-      nb.addClass("nb-hide");
-      nbBtnToggle.click( function() {
-        if( nb.hasClass("nb-hide") ) {
-          nbShow();
-        } else {
-          nbHide();
-        }
-      });
-  
-    // Collapse the dash navbar left subnav
-      nbBtnCollapse.click( function(e) {
-        e.preventDefault();
-        if( nb.hasClass("nb-collapsed") ) {
-          nb.removeClass("nb-collapsed");
-          contentWrap.removeClass("nb-collapsed");
-          $(this).find(".nb-link-icon").removeClass("fa-arrow-right").addClass("fa-arrow-left");
-        } else {
-          nb.addClass("nb-collapsed");
-          contentWrap.addClass("nb-collapsed");
-          $(this).find(".nb-link-icon").removeClass("fa-arrow-left").addClass("fa-arrow-right");
-        }
-      });
-  
-    // Close left navbar when top navbar opens
-      $( '.navbar-toggle' ).click( function() {
-        if ( $( this ).hasClass( 'collapsed' ) ) {
-          nbHide();
-        }
-      });
-  
-    // Close top navbar when left navbar opens
-      nbBtnToggle.click( function() {
-        $( '.navbar-toggle' ).addClass( 'collapsed' );
-        $( '.navbar-collapse' ).removeClass( 'in' );
-      });
-  
-    // Code credit: https://tr.im/CZzf4
-      function isMobile() {
-        try { document.createEvent("TouchEvent"); return true; }
-        catch(e){ return false; }
-      }
-  
-    // Swipe the navbar
-      if ( isMobile() == true ) {
-        $(window).swipe( {
-          swipeRight:function() {
-            nbShow();
-            $( '.navbar-collapse' ).removeClass( 'in' );
-          },
-          swipeLeft:function() {
-            nbHide();
-          },
-          threshold: 75
-        });
-      }
-  
-    // Collapse navbar on content click
-      $( '.content-wrap' ).click( function() {
-        nbHide();
-      });
-  
-    // Auto collapse other opens subnavs
-      /*$(".nb-nav > li > a").click( function() {
-        $( document ).find( 'ul .in' ).collapse( 'hide' );
-      });*/
-  
-  
-  
-  })();
-</script>
+                      <li>
+                        <a href=<%=edit_admin_registration_path%>>
+                          <span class="fa fa-image nb-link-icon"></span>
+                          <span class="nb-link-text">Profile Settings</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href=<%=destroy_admin_session_path%>>
+                          <span class="fa fa-image nb-link-icon"></span>
+                          <span class="nb-link-text">Logout</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- /.dash-navbar-left -->
+                  <div class="content-wrap nb-visible" data-effect="nb-push" style="padding: 0px;">
+                    <div class="row" style="padding-top:15px; padding-bottom: 15px; margin: 0px;">
+                      <div class="container" id="wrapperContainer" style="min-height: calc(100vh);">
+                        <%= yield %>
+                      </div>
+                      <!-- End of your content -->
+                    </div>
+                    <!-- End of row div -->
+                  </div>
+                  <!-- /.content-wrap -->
+                  <script type="text/javascript">
+                    (function(){
+                    "use strict";
+                    
+                    // Navbar left
+                    // -------------------------------------------------
+                    
+                      // Variables
+                        var nb                = $(".dash-navbar-left"),
+                            nbBtnToggle       = $(".nb-btn-toggle"),
+                            nbBtnCollapse     = $(".nb-btn-collapse"),
+                            contentWrap        = $(".content-wrap"),
+                            contentWrapEffect  = contentWrap.data("effect"),
+                            windowHeight       = $(window).height() - 61,
+                            windowWidth        = $(window).width() < 767;
+                    
+                      // Functions
+                        function cwShowOverflow() {
+                          if ( windowWidth ) {
+                              contentWrap.css({
+                              height : windowHeight ,
+                              overflow : 'hidden'
+                            });
+                            $( 'html, body' ).css( 'overflow', 'hidden' );
+                          }
+                        }
+                    
+                    
+                        function cwHideOverflow() {
+                          if ( windowWidth ) {
+                            contentWrap.css({
+                              height : 'auto' ,
+                              overflow : 'auto'
+                            });
+                            $( 'html, body' ).css( 'overflow', 'auto' );
+                          }
+                        }
+                    
+                        function nbShow() {
+                          nb.addClass("nb-show").removeClass("nb-hide");
+                          contentWrap.addClass(contentWrapEffect);
+                          cwShowOverflow();
+                          nbBtnToggle.find("span").removeClass("fa-bars").addClass("fa-arrow-left");
+                        }
+                    
+                        function nbHide() {
+                          nb.removeClass("nb-show").addClass("nb-hide");
+                          contentWrap.removeClass(contentWrapEffect);
+                          cwHideOverflow();
+                          nbBtnToggle.find("span").removeClass("fa-arrow-left").addClass("fa-bars");
+                        }
+                    
+                      // Toggle the edge navbar left
+                        nb.addClass("nb-hide");
+                        nbBtnToggle.click( function() {
+                          if( nb.hasClass("nb-hide") ) {
+                            nbShow();
+                          } else {
+                            nbHide();
+                          }
+                        });
+                    
+                      // Collapse the dash navbar left subnav
+                        nbBtnCollapse.click( function(e) {
+                          e.preventDefault();
+                          if( nb.hasClass("nb-collapsed") ) {
+                            nb.removeClass("nb-collapsed");
+                            contentWrap.removeClass("nb-collapsed");
+                            $(this).find(".nb-link-icon").removeClass("fa-arrow-right").addClass("fa-arrow-left");
+                          } else {
+                            nb.addClass("nb-collapsed");
+                            contentWrap.addClass("nb-collapsed");
+                            $(this).find(".nb-link-icon").removeClass("fa-arrow-left").addClass("fa-arrow-right");
+                          }
+                        });
+                    
+                      // Close left navbar when top navbar opens
+                        $( '.navbar-toggle' ).click( function() {
+                          if ( $( this ).hasClass( 'collapsed' ) ) {
+                            nbHide();
+                          }
+                        });
+                    
+                      // Close top navbar when left navbar opens
+                        nbBtnToggle.click( function() {
+                          $( '.navbar-toggle' ).addClass( 'collapsed' );
+                          $( '.navbar-collapse' ).removeClass( 'in' );
+                        });
+                    
+                      // Code credit: https://tr.im/CZzf4
+                        function isMobile() {
+                          try { document.createEvent("TouchEvent"); return true; }
+                          catch(e){ return false; }
+                        }
+                    
+                      // Swipe the navbar
+                        if ( isMobile() == true ) {
+                          $(window).swipe( {
+                            swipeRight:function() {
+                              nbShow();
+                              $( '.navbar-collapse' ).removeClass( 'in' );
+                            },
+                            swipeLeft:function() {
+                              nbHide();
+                            },
+                            threshold: 75
+                          });
+                        }
+                    
+                      // Collapse navbar on content click
+                        $( '.content-wrap' ).click( function() {
+                          nbHide();
+                        });
+                    
+                      // Auto collapse other opens subnavs
+                        /*$(".nb-nav > li > a").click( function() {
+                          $( document ).find( 'ul .in' ).collapse( 'hide' );
+                        });*/
+                    
+                    
+                    
+                    })();
+                  </script>
