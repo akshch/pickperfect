@@ -5,7 +5,7 @@ ruby "2.5.3"
 gem "rails", "5.2.2"
 # gem 'sqlite3',                  '1.3.13'
 gem "pg", "~> 0.18.4"
-gem "puma", "3.12.0"
+gem "puma", "4.3.9"
 gem "sass-rails", "5.0.7"
 gem "uglifier", "4.1.20"
 gem "bootstrap", "4.3.1"
